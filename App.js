@@ -1,5 +1,5 @@
 import React, {Fragment } from 'react';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 
 import Calculator from './components';
 
@@ -8,6 +8,7 @@ export default class App extends React.Component {
     return (
       <Fragment>
         <SafeAreaView style={styles.top}/>
+        <StatusBar barStyle="light-content" />
         <SafeAreaView style={styles.container}>
           <Calculator/>
         </SafeAreaView>
