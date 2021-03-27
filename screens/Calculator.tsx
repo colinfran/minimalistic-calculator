@@ -33,7 +33,7 @@ const Calculator = (): JSX.Element => {
     if (textHeight >= viewHeight) {
       setFontSize(fontSize - 1)
     }
-  }, [fontSize, textHeight, viewHeight])
+  }, [textHeight])
 
   const reset = (): void => {
     setResult('0')
