@@ -5,33 +5,22 @@ import { Text, View, TouchableHighlight } from '../components/Themed';
 import { useTheme } from '@react-navigation/native';
 import Colors from "../constants/Colors"
 import resp from "rn-responsive-font";
-// import { TouchableOpacity } from 'react-native-gesture-handler';
-import TextFit from "react-native-textfit"
 
-import { SvgXml } from 'react-native-svg';
-import xml from "../assets/images/info"
 import info from "../assets/images/info.png"
 import RBSheet from "react-native-raw-bottom-sheet";
 import stringMath from "string-math";
 import Settings from "./Settings"
 
 const Calculator = () => {
-
-  const refRBSheet = useRef();
-
-
+  const refRBSheet = useRef(null);
   const [result, setResult] = useState("0");
   const [previousButton, setPreviousButton] = useState("");
-  
   const [viewHeight, setViewHeight] = useState(0)
   const [textHeight, setTextHeight] = useState(0)
   const [fontSize, setFontSize] = useState(50)
-  const [isCalculated, setIsCalculated] = useState(false)
-
   const {dark} = useTheme();
   const color = dark ? "dark" : "light";
   const {background1, background2, borderColor, text} = Colors[color];
-
 
   useEffect(() => {
     if (textHeight >= viewHeight) {
@@ -39,14 +28,14 @@ const Calculator = () => {
     }
   }, [textHeight])
 
-  const reset = () => {
+  const reset = (): void => {
     setResult("0")
     setPreviousButton("")
     setFontSize(50)
     setIsCalculated(false)
   }
 
-  const calculate = () => {
+  const calculate = (): void => {
     var checkResult = "";
     if(result.includes('--')){
       checkResult = result.replace('--','+')
@@ -63,11 +52,11 @@ const Calculator = () => {
     setResult(evalutedStr)
   };
 
-  const onButtonPress = (val: string) => {
+  const onButtonPress = (val: string): void => {
     if(val === "AC"){
       return reset()
     }
-    else if (val === previousButton && isNaN(previousButton)){
+    else if (val === previousButton && isNaN(previousButton) && (val !== "(" && val !== ")")){
       return;
     }
     else if(val === "="){
@@ -93,7 +82,7 @@ const Calculator = () => {
     <SafeAreaView style={styles.intialContainer}>
       <View style={[styles.equationContainer, {backgroundColor: background1, borderColor}]}>
         <View style={styles.info} >
-          <TouchableOpacity onPress={() => refRBSheet.current.open()}>
+          <TouchableOpacity onPress={() => refRBSheet?.current?.open()}>
             <Image source={info} style={{width:24, height: 24, tintColor: text}}/>
           </TouchableOpacity>
         </View>
@@ -186,29 +175,7 @@ const Calculator = () => {
                 <Text style={styles.buttonText}>=</Text>
               </TouchableHighlight>
             </View>
-
           </View>
-          {/* <View style={{ flex: 1, height: "100%", width:'25%'}}>
-            <View style={[styles.buttonContainerRow, {flexDirection:'column'}]}>
-              <TouchableHighlight style={[styles.button,styles.buttonRight,{borderColor}]}  onPress={() => onButtonPress("/")}>
-                <Text style={styles.buttonText}>÷</Text>
-              </TouchableHighlight>
-              <TouchableHighlight style={[styles.button,styles.buttonRight,{borderColor}]}  onPress={() => onButtonPress("*")}>
-                <Text style={styles.buttonText}>×</Text>
-              </TouchableHighlight>
-              <TouchableHighlight style={[styles.button,styles.buttonRight,{borderColor}]}  onPress={() => onButtonPress("-")}>
-                <Text style={styles.buttonText}>-</Text>
-              </TouchableHighlight>
-              <TouchableHighlight style={[styles.button,styles.buttonRight,{borderColor}]}  onPress={() => onButtonPress("+")}>
-                <Text style={styles.buttonText}>+</Text>
-              </TouchableHighlight>
-              <TouchableHighlight style={[styles.buttonBottom,styles.buttonRight, styles.bottomRight,{borderColor}]}  onPress={() => onButtonPress("=")}>
-                <Text style={styles.buttonText}>=</Text>
-              </TouchableHighlight>
-            </View>
-
-          </View> */}
-
         </View>
       </View>
       <RBSheet
@@ -232,7 +199,7 @@ const Calculator = () => {
           }
         }}
       >
-        <Settings close={()=> refRBSheet.current.close()}/>
+        <Settings close={()=> refRBSheet?.current?.close()}/>
       </RBSheet>
     </SafeAreaView>
   );

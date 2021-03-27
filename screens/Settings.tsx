@@ -18,7 +18,7 @@ const SettingsList = ({navigation, close}) => {
       </View>
       <View style={{padding: 40, marginTop: 30}}>
         <View style={{backgroundColor: "#fff", borderRadius: 10, }}>
-          <TouchableOpacity activeOpacity={.1} style={{flexDirection:'row'}} onPress={()=>navigation.navigate("WebView", {uri: "https://docs.google.com/forms/d/e/1FAIpQLSfe9zudYw7BSy_HBjyx3DZMiSDQTmgHN73NWvd1zLeOqc6WDw/viewform?usp=sf_link"})}>
+          <TouchableOpacity activeOpacity={.1} style={{flexDirection:'row'}} onPress={()=>navigation.navigate("WebView", {uri: "https://apps.apple.com/us/app/calculator-for-minimalists/id1560501633"})}>
             <View style={{width: "20%", justifyContent:'center', alignItems:'center'}}>
               <MaterialCommunityIcons name="star-circle-outline" size={24} color="black" />
             </View>
