@@ -1,7 +1,8 @@
 export type RootStackParamList = {
-  Root: undefined
-}
+  Root: undefined;
+};
 
 export type NavigationParamList = {
-  Calculator: undefined
-}
+  Calculator: undefined;
+  TabTwo: undefined;
+};
