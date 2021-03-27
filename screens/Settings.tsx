@@ -20,16 +20,6 @@ const SettingsList = ({navigation, close}) => {
         <View style={{backgroundColor: "#fff", borderRadius: 10, }}>
           <TouchableOpacity activeOpacity={.1} style={{flexDirection:'row'}} onPress={()=>navigation.navigate("WebView", {uri: "https://docs.google.com/forms/d/e/1FAIpQLSfe9zudYw7BSy_HBjyx3DZMiSDQTmgHN73NWvd1zLeOqc6WDw/viewform?usp=sf_link"})}>
             <View style={{width: "20%", justifyContent:'center', alignItems:'center'}}>
-              <MaterialCommunityIcons name="help-circle-outline" size={24} color="black" />
-            </View>
-            <View style={{width: "80%",}}>
-              <View style={{paddingTop: 20, paddingBottom: 20, borderBottomWidth: .8}}>
-                <Text style={{color:'#000'}}>FAQs</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity activeOpacity={.1} style={{flexDirection:'row'}} onPress={()=>navigation.navigate("WebView", {uri: "https://docs.google.com/forms/d/e/1FAIpQLSfe9zudYw7BSy_HBjyx3DZMiSDQTmgHN73NWvd1zLeOqc6WDw/viewform?usp=sf_link"})}>
-            <View style={{width: "20%", justifyContent:'center', alignItems:'center'}}>
               <MaterialCommunityIcons name="star-circle-outline" size={24} color="black" />
             </View>
             <View style={{width: "80%",}}>
