@@ -33,6 +33,7 @@ const Calculator = (): JSX.Element => {
     if (textHeight >= viewHeight) {
       setFontSize(fontSize - 1)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [textHeight])
 
   const reset = (): void => {
@@ -42,12 +43,8 @@ const Calculator = (): JSX.Element => {
   }
 
   const calculate = (): void => {
-    let checkResult = ''
-    if (result.includes('--')) {
-      checkResult = result.replace('--', '+')
-    } else {
-      checkResult = result
-    }
+    const checkResult = result
+
     let evalutedStr = ''
     try {
       evalutedStr = stringMath(checkResult)
@@ -58,18 +55,20 @@ const Calculator = (): JSX.Element => {
   }
 
   const onButtonPress = (val: string): void => {
-    if (result === 'Error') return
     if (val === 'AC') {
       reset()
+      return
     }
     if (
-      val === previousButton &&
-      Number.isNaN(previousButton) &&
-      val !== '(' &&
-      val !== ')'
+      (val === previousButton &&
+        Number.isNaN(previousButton) &&
+        val !== '(' &&
+        val !== ')') ||
+      previousButton === '='
     ) {
       return
     }
+    if (result === 'Error') return
     if (val === '=') {
       calculate()
     } else if (val === '←' && previousButton !== '=') {
@@ -116,17 +115,16 @@ const Calculator = (): JSX.Element => {
           </Text>
         </View>
       </View>
-      <View
-        style={[
-          styles.buttonContainer,
-          styles.bottomLeft,
-          styles.bottomRight,
-          { backgroundColor: background2 },
-        ]}
-      >
+      <View style={[styles.buttonContainer]}>
         <View style={{ flex: 1, flexDirection: 'row' }}>
           <View style={{ width: '100%' }}>
-            <View style={[styles.buttonContainerRow, { borderColor }]}>
+            <View
+              style={[
+                styles.buttonContainerRow,
+                { backgroundColor: background2 },
+                { borderColor },
+              ]}
+            >
               <TouchableHighlight
                 style={[styles.button, { borderColor }]}
                 onPress={() => onButtonPress('%')}
@@ -152,7 +150,13 @@ const Calculator = (): JSX.Element => {
                 <Text style={styles.buttonText}>÷</Text>
               </TouchableHighlight>
             </View>
-            <View style={[styles.buttonContainerRow, { borderColor }]}>
+            <View
+              style={[
+                styles.buttonContainerRow,
+                { backgroundColor: background2 },
+                { borderColor },
+              ]}
+            >
               <TouchableHighlight
                 style={[styles.button, { borderColor }]}
                 onPress={() => onButtonPress('7')}
@@ -178,7 +182,13 @@ const Calculator = (): JSX.Element => {
                 <Text style={styles.buttonText}>×</Text>
               </TouchableHighlight>
             </View>
-            <View style={[styles.buttonContainerRow, { borderColor }]}>
+            <View
+              style={[
+                styles.buttonContainerRow,
+                { backgroundColor: background2 },
+                { borderColor },
+              ]}
+            >
               <TouchableHighlight
                 style={[styles.button, { borderColor }]}
                 onPress={() => onButtonPress('4')}
@@ -204,7 +214,13 @@ const Calculator = (): JSX.Element => {
                 <Text style={styles.buttonText}>-</Text>
               </TouchableHighlight>
             </View>
-            <View style={[styles.buttonContainerRow, { borderColor }]}>
+            <View
+              style={[
+                styles.buttonContainerRow,
+                { backgroundColor: background2 },
+                { borderColor },
+              ]}
+            >
               <TouchableHighlight
                 style={[styles.button, { borderColor }]}
                 onPress={() => onButtonPress('1')}
@@ -235,11 +251,11 @@ const Calculator = (): JSX.Element => {
                 styles.buttonContainerRow,
                 styles.bottomLeft,
                 styles.bottomRight,
-                { borderColor },
+                { borderColor, backgroundColor: background2 },
               ]}
             >
               <TouchableHighlight
-                style={[styles.button, { borderColor }]}
+                style={[styles.button, styles.bottomLeft, { borderColor }]}
                 onPress={() => onButtonPress('AC')}
               >
                 <Text style={styles.buttonText}>AC</Text>
@@ -257,7 +273,11 @@ const Calculator = (): JSX.Element => {
                 <Text style={styles.buttonText}>.</Text>
               </TouchableHighlight>
               <TouchableHighlight
-                style={[styles.buttonBottom, { borderColor }]}
+                style={[
+                  styles.buttonBottom,
+                  styles.bottomRight,
+                  { borderColor },
+                ]}
                 onPress={() => onButtonPress('=')}
               >
                 <Text style={styles.buttonText}>=</Text>

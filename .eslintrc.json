@@ -6,7 +6,7 @@
       "prettier",
       "plugin:prettier/recommended"
     ],
-    "plugins": ["@typescript-eslint", "react", "prettier", "unused-imports"],
+    "plugins": ["@typescript-eslint", "react", "react-hooks", "prettier", "unused-imports"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
       "ecmaFeatures": {
