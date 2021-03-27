@@ -12,8 +12,9 @@ import { SvgXml } from 'react-native-svg';
 import xml from "../assets/images/info"
 import info from "../assets/images/info.png"
 import RBSheet from "react-native-raw-bottom-sheet";
-
+import stringMath from "string-math";
 import Settings from "./Settings"
+
 const Calculator = () => {
 
   const refRBSheet = useRef();
@@ -41,7 +42,7 @@ const Calculator = () => {
   const reset = () => {
     setResult("0")
     setPreviousButton("")
-    setFontSize(30)
+    setFontSize(50)
     setIsCalculated(false)
   }
 
@@ -55,7 +56,7 @@ const Calculator = () => {
     }
     let evalutedStr = "";
     try {
-      evalutedStr = (eval(checkResult) || "" ) + ""
+      evalutedStr = stringMath(checkResult)
     } catch (e) {
       evalutedStr = "Error"
     }
@@ -109,12 +110,12 @@ const Calculator = () => {
               var {height } = event.nativeEvent.layout;
               setTextHeight(height)
             }}
-          >{result.replace(/\*/g, "×")}</Text>
+          >{result}</Text>
         </View>
       </View>
       <View style={[styles.buttonContainer, styles.bottomLeft, styles.bottomRight, {backgroundColor: background2}]}>
         <View style={{flex:1, flexDirection:'row'}}>
-          <View style={{width:'75%'}}>
+          <View style={{width:'100%'}}>
             <View style={[styles.buttonContainerRow, {borderColor}]}>
               <TouchableHighlight style={[styles.button, {borderColor}]} onPress={() => onButtonPress('%')}>
                 <Text style={styles.buttonText}>%</Text>
@@ -124,6 +125,9 @@ const Calculator = () => {
               </TouchableHighlight>
               <TouchableHighlight style={[styles.button, {borderColor}]} onPress={() => onButtonPress(')')}>
                 <Text style={styles.buttonText}>)</Text>
+              </TouchableHighlight>
+              <TouchableHighlight style={[styles.button,{borderColor}]}  onPress={() => onButtonPress("/")}>
+                <Text style={styles.buttonText}>÷</Text>
               </TouchableHighlight>
             </View>
             <View style={[styles.buttonContainerRow, {borderColor}]}>
@@ -136,6 +140,9 @@ const Calculator = () => {
               <TouchableHighlight style={[styles.button,{borderColor}]}  onPress={() => onButtonPress("9")}>
                 <Text style={styles.buttonText}>9</Text>
               </TouchableHighlight>
+              <TouchableHighlight style={[styles.button,{borderColor}]}  onPress={() => onButtonPress("*")}>
+                <Text style={styles.buttonText}>×</Text>
+              </TouchableHighlight>
             </View>
             <View style={[styles.buttonContainerRow, {borderColor}]}>
               <TouchableHighlight style={[styles.button,{borderColor}]}  onPress={() => onButtonPress("4")}>
@@ -147,7 +154,9 @@ const Calculator = () => {
               <TouchableHighlight style={[styles.button,{borderColor}]}  onPress={() => onButtonPress("6")}>
                 <Text style={styles.buttonText}>6</Text>
               </TouchableHighlight>
-              
+              <TouchableHighlight style={[styles.button,{borderColor}]}  onPress={() => onButtonPress("-")}>
+                <Text style={styles.buttonText}>-</Text>
+              </TouchableHighlight>
             </View>
             <View style={[styles.buttonContainerRow, {borderColor}]}>
               <TouchableHighlight style={[styles.button,{borderColor}]} onPress={() => onButtonPress("1")}>
@@ -159,9 +168,12 @@ const Calculator = () => {
               <TouchableHighlight style={[styles.button,{borderColor}]}  onPress={() => onButtonPress("3")}>
                 <Text style={styles.buttonText}>3</Text>
               </TouchableHighlight>
+              <TouchableHighlight style={[styles.button,{borderColor}]}  onPress={() => onButtonPress("+")}>
+                <Text style={styles.buttonText}>+</Text>
+              </TouchableHighlight>
             </View>
-            <View style={[styles.buttonContainerRow,styles.bottomLeft, {borderColor}]}>
-              <TouchableHighlight style={[styles.button, styles.bottomLeft, {borderColor}]}  onPress={() => onButtonPress("AC")}>
+            <View style={[styles.buttonContainerRow,styles.bottomLeft, styles.bottomRight, {borderColor}]}>
+              <TouchableHighlight style={[styles.button, {borderColor}]}  onPress={() => onButtonPress("AC")}>
                 <Text style={styles.buttonText}>AC</Text>
               </TouchableHighlight>
               <TouchableHighlight style={[styles.button,{borderColor}]}  onPress={() => onButtonPress("0")}>
@@ -170,10 +182,13 @@ const Calculator = () => {
               <TouchableHighlight style={[styles.button,{borderColor}]}  onPress={() => onButtonPress(".")}>
                 <Text style={styles.buttonText}>.</Text>
               </TouchableHighlight>
+              <TouchableHighlight style={[styles.buttonBottom, {borderColor}]}  onPress={() => onButtonPress("=")}>
+                <Text style={styles.buttonText}>=</Text>
+              </TouchableHighlight>
             </View>
 
           </View>
-          <View style={{ flex: 1, height: "100%", width:'25%'}}>
+          {/* <View style={{ flex: 1, height: "100%", width:'25%'}}>
             <View style={[styles.buttonContainerRow, {flexDirection:'column'}]}>
               <TouchableHighlight style={[styles.button,styles.buttonRight,{borderColor}]}  onPress={() => onButtonPress("/")}>
                 <Text style={styles.buttonText}>÷</Text>
@@ -192,7 +207,7 @@ const Calculator = () => {
               </TouchableHighlight>
             </View>
 
-          </View>
+          </View> */}
 
         </View>
       </View>
@@ -297,7 +312,9 @@ const styles = StyleSheet.create({
   },
   bottomRight: {
     borderBottomRightRadius: 20,
-    backgroundColor:'transparent'
+    backgroundColor:'transparent', 
+    borderBottomWidth: .5,
+    borderRightWidth: .5
   },
 });
 
