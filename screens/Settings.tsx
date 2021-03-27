@@ -38,7 +38,7 @@ const SettingsList = ({navigation, close}) => {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={.1} style={{flexDirection:'row'}} onPress={()=>navigation.navigate("WebView", {uri: "https://wallpaperqr.com/license.html"})}>
+          <TouchableOpacity activeOpacity={.1} style={{flexDirection:'row'}} onPress={()=>navigation.navigate("WebView", {uri: "https://colinfran.github.io/calculator-for-minimalists/license.html"})}>
             <View style={{width: "20%", justifyContent:'center', alignItems:'center'}}>
               <MaterialCommunityIcons name="copyright" size={24} color="black" />
             </View>
@@ -48,7 +48,7 @@ const SettingsList = ({navigation, close}) => {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={.1} style={{flexDirection:'row'}} onPress={()=>navigation.navigate("WebView", {uri: "https://wallpaperqr.com/privacy-policy.html"})}>
+          <TouchableOpacity activeOpacity={.1} style={{flexDirection:'row'}} onPress={()=>navigation.navigate("WebView", {uri: "https://colinfran.github.io/calculator-for-minimalists/privacy-policy.html"})}>
             <View style={{width: "20%", justifyContent:'center', alignItems:'center'}}>
               <MaterialCommunityIcons name="text-box-outline" size={24} color="black" />
             </View>
