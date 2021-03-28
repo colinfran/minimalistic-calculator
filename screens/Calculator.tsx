@@ -21,7 +21,6 @@ import Settings from './Settings'
 const Calculator = (): JSX.Element => {
   const refRBSheet = useRef(null)
   const [result, setResult] = useState('0')
-  const [previousButton, setPreviousButton] = useState('')
   const [viewHeight, setViewHeight] = useState(0)
   const [textHeight, setTextHeight] = useState(0)
   const [fontSize, setFontSize] = useState(50)
@@ -38,16 +37,13 @@ const Calculator = (): JSX.Element => {
 
   const reset = (): void => {
     setResult('0')
-    setPreviousButton('')
     setFontSize(50)
   }
 
   const calculate = (): void => {
-    const checkResult = result
-
     let evalutedStr = ''
     try {
-      evalutedStr = stringMath(checkResult)
+      evalutedStr = stringMath(result)
     } catch (e) {
       evalutedStr = 'Error'
     }
@@ -55,30 +51,11 @@ const Calculator = (): JSX.Element => {
   }
 
   const onButtonPress = (val: string): void => {
-    if (val === 'AC') {
-      reset()
-      return
-    }
-    if (
-      (val === previousButton &&
-        Number.isNaN(previousButton) &&
-        val !== '(' &&
-        val !== ')') ||
-      previousButton === '='
-    ) {
-      return
-    }
-    if (result === 'Error') return
-    if (val === '=') {
-      calculate()
-    } else if (val === '←' && previousButton !== '=') {
-      setResult(result.slice(0, -1))
-    } else if (result === '0') {
-      setResult(val)
-    } else {
-      setResult(result + val)
-    }
-    setPreviousButton(val)
+    if (val === 'AC') reset()
+    else if (result === 'Error') {
+    } else if (val === '=') calculate()
+    else if (result === '0') setResult(val)
+    else setResult(result + val)
   }
 
   return (
