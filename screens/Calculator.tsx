@@ -52,8 +52,8 @@ const Calculator = (): JSX.Element => {
 
   const onButtonPress = (val: string): void => {
     if (val === 'AC') reset()
-    else if (result === 'Error') {
-    } else if (val === '=') calculate()
+    else if (result === 'Error') setResult('Error')
+    else if (val === '=') calculate()
     else if (result === '0') setResult(val)
     else setResult(result + val)
   }
