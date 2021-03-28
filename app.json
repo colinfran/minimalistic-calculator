@@ -2,9 +2,9 @@
   "expo": {
     "name": "Calculator for Minimalists",
     "slug": "calculator-for-minimalists",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/iconImage.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {

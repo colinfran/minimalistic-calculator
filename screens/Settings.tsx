@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableOpacity, Button } from 'react-native'
+import { TouchableOpacity, Button, Linking } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
@@ -25,10 +25,9 @@ const SettingsList = ({
             activeOpacity={0.1}
             style={{ flexDirection: 'row' }}
             onPress={() =>
-              navigation.navigate('WebView', {
-                uri:
-                  'https://apps.apple.com/us/app/calculator-for-minimalists/id1560501633',
-              })
+              Linking.openURL(
+                `https://apps.apple.com/us/app/calculator-for-minimalists/id1560501633?action=write-review`,
+              )
             }
           >
             <View
