@@ -2,10 +2,10 @@
   "expo": {
     "name": "Calculator for Minimalists",
     "slug": "calculator-for-minimalists",
-    "version": "1.0.3",
+    "version": "1.0.5",
     "orientation": "portrait",
-    "icon": "./assets/images/iconImage.png",
-    "scheme": "myapp",
+    "icon": "./assets/images/appicon.png",
+    "scheme": "calculator-for-minimalists",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
