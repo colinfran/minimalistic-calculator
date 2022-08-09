@@ -7,5 +7,7 @@ A calculator app built with React Native and Expo.
 
 Just practicing my node.js / react.js /react native skills.
 
+https://colinfran.github.io/calculator-for-minimalists/
+
 
 ![calculator gif](/assets/calculator.gif?raw=true)
